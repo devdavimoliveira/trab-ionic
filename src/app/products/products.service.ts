@@ -46,6 +46,6 @@ export class ProductsService {
   }
 
   getProductBySlug(slug: string) {
-    return this.products.filter(product => product.slug === slug);
+    return this.products.find(product => product.slug === slug);
   }
 }

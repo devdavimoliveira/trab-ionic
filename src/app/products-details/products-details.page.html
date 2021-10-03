@@ -1,13 +1,14 @@
 <ion-header>
   <ion-toolbar color="warning">
-    <ion-title color="light">teste</ion-title>
+    <ion-title color="light">{{product.title}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card> 
+  <ion-card>
+    <img src={{product.imgUrl}}>
     <ion-card-content>
-      {{slug}}
+      {{product.description}}
     </ion-card-content>
     <ion-button color="primary" expand="full">Pedir esse bolo agora</ion-button>
   </ion-card>

@@ -8,12 +8,14 @@ import { ProductsService } from '../products/products.service';
 })
 export class ProductsDetailsPage implements OnInit {
 
-  slug: string;
+  public slug: string;
+  product;
 
   constructor(private route: ActivatedRoute, private productsService: ProductsService) { }
 
   ngOnInit() {
-    this.slug = this.route.snapshot.paramMap.get(':slug');
+    this.slug = this.route.snapshot.paramMap.get('slug');
+    this.product = this.productsService.getProductBySlug(this.slug);
   }
 
 }
