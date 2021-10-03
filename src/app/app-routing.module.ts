@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'products-details/:slug',
     loadChildren: () => import('./products-details/products-details.module').then( m => m.ProductsDetailsPageModule)
+  },
+  {
+    path: 'request/:slug',
+    loadChildren: () => import('./request/request.module').then( m => m.RequestPageModule)
   }
 ];
 
