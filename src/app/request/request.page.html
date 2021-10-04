@@ -35,7 +35,7 @@
 
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="primary" expand="block" [disabled]="!form.valid">Confirmar Pedido!</ion-button>
+          <ion-button type="submit" color="primary" expand="block" [disabled]="!form.valid" (click)="submit()">Confirmar Pedido!</ion-button>
         </ion-col>
       </ion-row>
     </form>
