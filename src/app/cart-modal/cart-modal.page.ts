@@ -11,11 +11,13 @@ import { CartModalService, Product } from './cart-modal.service';
 export class CartModalPage implements OnInit {
 
   products: Product[];
+  amount = 0;
 
   constructor(private cartModalService: CartModalService, private modalCtrl: ModalController, private router: Router) { }
 
   ngOnInit() {
     this.products = this.cartModalService.getProducts();
+    this.amount = this.cartModalService.takeAmount();
   }
 
   onClose() {
@@ -30,12 +32,6 @@ export class CartModalPage implements OnInit {
   onRemove(product: Product) {
     this.cartModalService.removeProduct(product);
     this.ngOnInit();
-  }
-
-  takeAmount() {
-    let amount = 0;
-    this.products.forEach(product => amount += +product.price);
-    return amount;
   }
 
 }
