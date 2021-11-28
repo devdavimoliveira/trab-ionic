@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router ,ActivatedRoute } from '@angular/router';
-import { ProductsService } from '../products/products.service';
+import {HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-products-details',
   templateUrl: './products-details.page.html',
@@ -11,11 +11,13 @@ export class ProductsDetailsPage implements OnInit {
   public slug: string;
   product;
 
-  constructor(private route: ActivatedRoute, private router: Router, private productsService: ProductsService) { }
+  constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) { }
 
   ngOnInit() {
     this.slug = this.route.snapshot.paramMap.get('slug');
-    this.product = this.productsService.getProductBySlug(this.slug);
+    this.http.get(`http://localhost:3000/cakes/cakeBySlug/${this.slug}`).subscribe(data => {
+      this.product = data;
+    });
   }
 
   onClick() {

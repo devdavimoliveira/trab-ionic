@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import { ProductsService } from './products.service';
+import {HttpClient} from '@angular/common/http';
 @Component({
   selector: 'app-products',
   templateUrl: './products.page.html',
@@ -8,12 +8,14 @@ import { ProductsService } from './products.service';
 })
 export class ProductsPage implements OnInit {
 
-  products = [];
+  products;
 
-  constructor(private productsService: ProductsService) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.products = this.productsService.getProducts();
+    this.http.get('http://localhost:3000/cakes').subscribe(data => {
+      this.products = data;
+    });
   }
 
 }

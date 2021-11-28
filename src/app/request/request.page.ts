@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ProductsService } from '../products/products.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { RequestPageForm } from './request.page.form';
 import { AlertController } from '@ionic/angular';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-request',
@@ -16,7 +16,7 @@ export class RequestPage implements OnInit {
   form: FormGroup;
   product;
 
-  constructor(private route: ActivatedRoute, private productsService: ProductsService, private formBuilder: FormBuilder,
+  constructor(private route: ActivatedRoute, private http: HttpClient, private formBuilder: FormBuilder,
     public alertController: AlertController, private router: Router) { }
 
     async submit() {
@@ -32,7 +32,9 @@ export class RequestPage implements OnInit {
 
   ngOnInit() {
     this.slug = this.route.snapshot.paramMap.get('slug');
-    this.product = this.productsService.getProductBySlug(this.slug);
+    this.http.get(`http://localhost:3000/cakes/cakeBySlug/${this.slug}`).subscribe(data => {
+      this.product = data;
+    });
     this.form = new RequestPageForm(this.formBuilder).createForm();
   }
 
