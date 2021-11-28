@@ -8,13 +8,25 @@
 </ion-header>
 
 <ion-content>
-  <ion-card>
+  <ion-card class="cakesSelected">
     <ion-card-header color="medium">
-      <ion-card-title>Bolo escolhido</ion-card-title>
+      <ion-card-title>Bolos escolhidos</ion-card-title>
     </ion-card-header>
   
     <ion-card-content>
-        {{product?.title }} por: R$ {{product?.price}}
+      <ion-list>
+       <ion-item *ngFor="let product of products">
+          <ion-label>
+            <h1>{{product?.title}}</h1>
+            <p>Preço: R${{product?.price}}</p>
+          </ion-label>
+        </ion-item>
+        
+        <div class="amount">
+          <h1>Total</h1>
+          <p>Preço: R${{amount}}</p>
+        </div>
+      </ion-list>
     </ion-card-content>
   </ion-card>
 

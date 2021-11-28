@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar color="warning">
+    <ion-buttons slot="start">
+      <ion-icon name="close-outline" (click)="onClose()"></ion-icon>
+    </ion-buttons>
+    <ion-title color="light">Carrinho</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor="let product of products">
+    <ion-avatar slot="start">
+      <img src={{product?.imgUrl}}>
+    </ion-avatar>
+    <ion-label>
+      <h1>{{product?.title}}</h1>
+      <p>Preço: R${{product?.price}}</p>
+    </ion-label>
+    <ion-buttons slot="end">
+      <ion-icon name="trash-outline" color="danger" (click)="onRemove(product)"></ion-icon>
+    </ion-buttons>
+  </ion-item>
+
+  <ion-card> 
+    <ion-card-content>
+      <h1>Total: R${{takeAmount()}}</h1>
+    </ion-card-content>
+    <ion-button class="submitButton" expand="block" (click)="onClick()">Finalizar compra</ion-button>
+  </ion-card>
+  
+  
+</ion-content>

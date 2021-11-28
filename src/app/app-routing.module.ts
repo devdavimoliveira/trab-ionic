@@ -20,8 +20,12 @@ const routes: Routes = [
     loadChildren: () => import('./products-details/products-details.module').then( m => m.ProductsDetailsPageModule)
   },
   {
-    path: 'request/:slug',
+    path: 'request',
     loadChildren: () => import('./request/request.module').then( m => m.RequestPageModule)
+  },
+  {
+    path: 'cart-modal',
+    loadChildren: () => import('./cart-modal/cart-modal.module').then( m => m.CartModalPageModule)
   }
 ];
 

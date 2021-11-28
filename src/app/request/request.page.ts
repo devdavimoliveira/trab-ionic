@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { RequestPageForm } from './request.page.form';
 import { AlertController } from '@ionic/angular';
 import {HttpClient} from '@angular/common/http';
+import { CartModalService, Product } from '../cart-modal/cart-modal.service';
 
 @Component({
   selector: 'app-request',
@@ -14,10 +15,11 @@ export class RequestPage implements OnInit {
 
   public slug: string;
   form: FormGroup;
-  product;
+  products: Product[];
+  amount = 0;
 
   constructor(private route: ActivatedRoute, private http: HttpClient, private formBuilder: FormBuilder,
-    public alertController: AlertController, private router: Router) { }
+    public alertController: AlertController, private router: Router, private cartModalService: CartModalService) { }
 
     async submit() {
       const alert = await this.alertController.create({
@@ -32,10 +34,9 @@ export class RequestPage implements OnInit {
 
   ngOnInit() {
     this.slug = this.route.snapshot.paramMap.get('slug');
-    this.http.get(`http://localhost:3000/cakes/cakeBySlug/${this.slug}`).subscribe(data => {
-      this.product = data;
-    });
+    this.products = this.cartModalService.getProducts();
     this.form = new RequestPageForm(this.formBuilder).createForm();
+    this.amount = this.cartModalService.takeAmount();
   }
 
 }

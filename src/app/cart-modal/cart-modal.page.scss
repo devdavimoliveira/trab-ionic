@@ -1,0 +1,17 @@
+ion-icon {
+  width: 25px;
+  height: 25px;
+}
+
+ion-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  ion-button {
+    width: 95%;
+  }
+}
+
+
